@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.appbar.AppBarLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:background="@drawable/appbar_background"
+    android:fitsSystemWindows="true"
+    app:elevation="0dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_scrollFlags="scroll|enterAlways|snap">
+
+        <TextView
+            android:id="@+id/tv_main_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_margin="16dp"
+            android:fitsSystemWindows="true"
+            android:text="Поиск"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_main_title"
+            android:layout_toStartOf="@+id/iv_main_sort"
+            android:background="@drawable/background_search"
+            android:drawableStart="@drawable/background_search_ic"
+            android:drawablePadding="5dp"
+            android:imeOptions="actionSearch"
+            android:inputType="text|textCapSentences"
+            android:padding="10dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:textColor="@color/black"
+            android:textCursorDrawable="@drawable/background_cursor" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_main_sort"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_below="@+id/tv_main_title"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="32dp"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/background_sort" />
+
+
+    </RelativeLayout>
+
+</com.google.android.material.appbar.AppBarLayout>

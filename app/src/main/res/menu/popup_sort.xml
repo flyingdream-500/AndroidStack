@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/sort_group"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/sort_activity"
+            android:title="@string/activity" />
+        <item
+            android:id="@+id/sort_creation"
+            android:title="@string/creation" />
+        <item
+            android:id="@+id/sort_votes"
+            android:title="@string/votes" />
+    </group>
+    <item
+        android:id="@+id/sort_desc"
+        android:title="@string/ascending"
+        android:checkable="true"/>
+</menu>

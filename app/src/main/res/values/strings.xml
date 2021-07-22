@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">AndroidStack</string>
+    <string name="retry">RETRY</string>
+
+
+    <!--Main popup menu-->
+    <string name="activity">Activity</string>
+    <string name="creation">Creation</string>
+    <string name="votes">Votes</string>
+    <string name="ascending">Ascending</string>
+
+    <!--Main bottom navigation view-->
+    <string name="all_questions">All Questions</string>
+    <string name="favorite">Favorite</string>
+
+    <!--Network-->
+    <string name="no_connection">No connection</string>
+</resources>
