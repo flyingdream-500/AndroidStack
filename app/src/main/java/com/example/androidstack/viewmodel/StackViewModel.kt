@@ -6,14 +6,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
-import com.example.androidstack.App
-import com.example.androidstack.api.StackService
-import com.example.androidstack.db.StackCache
+import com.example.androidstack.model.NetworkState
 import com.example.androidstack.model.Question
 import com.example.androidstack.model.StackRequest
 import com.example.androidstack.model.StackResponse
 import com.example.androidstack.repository.StackRepository
-import java.util.concurrent.Executors
 
 class StackViewModel(private val repository: StackRepository): ViewModel() {
 
@@ -23,7 +20,8 @@ class StackViewModel(private val repository: StackRepository): ViewModel() {
     }
 
     val repos: LiveData<PagedList<Question>> = Transformations.switchMap(repoResult) { it -> it.data }
-    val networkErrors: LiveData<String> = Transformations.switchMap(repoResult) { it -> it.networkErrors }
+    val networkStates: LiveData<NetworkState> = Transformations.switchMap(repoResult) { it -> it.networkStates }
+
 
     fun searchRepo(request: StackRequest): Boolean {
         if (queryLiveData.value != request) {
@@ -33,12 +31,16 @@ class StackViewModel(private val repository: StackRepository): ViewModel() {
         return false
     }
 
+    fun getRefreshState(): MutableLiveData<NetworkState> {
+        return repository.refreshState
+    }
+
     fun refresh() {
         repository.refresh(queryLiveData.value!!)
     }
 
-    /**
-     * Get the last query value.
-     */
-    fun lastQueryValue(): StackRequest? = queryLiveData.value
+    fun retry() {
+        Log.d("TAGG", "retry()")
+        repository.retry()
+    }
 }

@@ -2,21 +2,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:padding="12dp">
+    android:padding="10dp">
 
     <ProgressBar
         android:id="@+id/pb_footer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
         android:indeterminateTint="@color/orange"/>
 
     <TextView
-        android:id="@+id/tv_footer"
+        android:id="@+id/tv_footer_retry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
         android:background="@drawable/background_retry"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
@@ -24,5 +27,18 @@
         android:paddingEnd="10dp"
         android:textColor="@color/white"
         android:text="@string/retry" />
+
+    <TextView
+        android:id="@+id/tv_footer_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_footer_retry"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        tools:text="Addsfsfsdfdfdf dsfsdfsd dsfsdfsd fsdfsd fsd fdsfsd dfgdfgdfg fdgdfgdf">
+
+    </TextView>
+
 
 </RelativeLayout>

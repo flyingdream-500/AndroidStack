@@ -1,29 +1,36 @@
 package com.example.androidstack.repository
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.paging.LivePagedListBuilder
 import com.example.androidstack.api.StackService
 import com.example.androidstack.api.search
 import com.example.androidstack.db.StackCache
 import com.example.androidstack.db.StackDao
+import com.example.androidstack.model.NetworkState
 import com.example.androidstack.model.StackRequest
 import com.example.androidstack.model.StackResponse
+import io.reactivex.rxjava3.functions.Action
 
 class StackRepository(
     private val service: StackService,
     private val cache: StackCache
 ) {
 
+
+    val refreshState = MutableLiveData<NetworkState>()
+    var retryFunc: () -> Unit = {Log.d("TAGG", "Empty retry")}
+
     fun refresh(request: StackRequest) {
+        refreshState.postValue(NetworkState.LOADING)
         search(service, request, 1, 20, { repos ->
 
             cache.refresh(repos, request) {
-                //lastRequestedPage++
-                //isRequestInProgress = false
+                refreshState.postValue(NetworkState.LOADED)
             }
         }, { error ->
-            //_networkErrors.postValue(error)
-            //isRequestInProgress = false
+            refreshState.postValue(NetworkState.error(error))
         })
     }
 
@@ -37,6 +44,7 @@ class StackRepository(
         // the list and update the database with extra data
         val boundaryCallback = StackBoundaryCallback(request, service, cache)
         val networkErrors = boundaryCallback.networkErrors
+        retryFunc = boundaryCallback.retryFunc
 
         // Get the paged list
         val data = LivePagedListBuilder(dataSourceFactory, DATABASE_PAGE_SIZE)
@@ -45,6 +53,10 @@ class StackRepository(
 
         // Get the network errors exposed by the boundary callback
         return StackResponse(data, networkErrors)
+    }
+
+    fun retry() {
+        retryFunc.invoke()
     }
     
 

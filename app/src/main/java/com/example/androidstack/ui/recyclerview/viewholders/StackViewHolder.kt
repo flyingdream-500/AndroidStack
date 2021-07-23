@@ -1,4 +1,4 @@
-package com.example.androidstack.ui
+package com.example.androidstack.ui.recyclerview.viewholders
 
 import android.view.LayoutInflater
 import android.view.View

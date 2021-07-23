@@ -5,5 +5,5 @@ import androidx.paging.PagedList
 
 data class StackResponse(
     val data: LiveData<PagedList<Question>>,
-    val networkErrors: LiveData<String>) {
+    val networkStates: LiveData<NetworkState>) {
 }

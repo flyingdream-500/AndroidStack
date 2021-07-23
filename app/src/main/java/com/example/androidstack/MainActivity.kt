@@ -12,13 +12,13 @@ import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.paging.PagedList
 import com.example.androidstack.di.Injection
+import com.example.androidstack.model.NetworkState
 import com.example.androidstack.model.Question
 import com.example.androidstack.model.StackRequest
-import com.example.androidstack.ui.StackAdapter
+import com.example.androidstack.ui.recyclerview.StackAdapter
 import com.example.androidstack.util.*
 import com.example.androidstack.viewmodel.StackViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var popupMenu: PopupMenu
 
     private lateinit var viewModel: StackViewModel
-    private val adapter = StackAdapter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,8 +60,8 @@ class MainActivity : AppCompatActivity() {
         val sortID = appPreferences.getSortID()
         val order = appPreferences.getOrder()
 
-        popupMenu.menu.findItem(sortID).isChecked = true
-        popupMenu.menu.findItem(R.id.sort_desc).isChecked = order
+        //popupMenu.menu.findItem(sortID).isChecked = true
+        //popupMenu.menu.findItem(R.id.sort_desc).isChecked = order
 
         val search = appPreferences.getQuery()
         val sort = appPreferences.getSortName()
@@ -156,21 +155,31 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initSwipeToRefresh() {
+        viewModel.getRefreshState().observe(this) {
+            Log.d("NEWTAGG", it.status.name)
+            swipe_refresh_layout.isRefreshing = it == NetworkState.LOADING
+        }
+
+
         swipe_refresh_layout.setOnRefreshListener {
             viewModel.refresh()
-            swipe_refresh_layout.isRefreshing = false
+            //swipe_refresh_layout.isRefreshing = false
         }
     }
 
     private fun initAdapter() {
+        val adapter = StackAdapter {
+            viewModel.retry()
+        }
         rv_questions.adapter = adapter
         viewModel.repos.observe(this, Observer<PagedList<Question>> {
             Log.d("TAGG", "repos list: ${it?.size}")
             showEmptyList(it?.size == 0)
             adapter.submitList(it)
         })
-        viewModel.networkErrors.observe(this, Observer<String> {
-            Toast.makeText(this, "\uD83D\uDE28 Wooops $it", Toast.LENGTH_LONG).show()
+        viewModel.networkStates.observe(this, Observer<NetworkState> {
+            Log.d("NEWTAGG", "${it.status.name} ${it?.msg}")
+            adapter.setNetworkState(it)
         })
     }
 
