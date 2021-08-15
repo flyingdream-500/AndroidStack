@@ -8,7 +8,6 @@
     tools:context=".MainActivity">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -74,7 +73,8 @@
 
         </RelativeLayout>
 
-        <TextView android:id="@+id/emptyList"
+        <TextView
+            android:id="@+id/emptyList"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:gravity="center"

@@ -7,7 +7,7 @@ import com.example.androidstack.db.StackDatabase
 class App: Application() {
 
     companion object {
-        lateinit var db: StackDatabase
+        private lateinit var db: StackDatabase
 
         fun getDataBase(): StackDatabase {
             return db

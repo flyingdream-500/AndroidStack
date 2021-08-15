@@ -8,15 +8,13 @@ import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 import com.example.androidstack.R
 import com.example.androidstack.model.Question
+import java.lang.StringBuilder
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.temporal.ChronoUnit
 import java.util.*
 import java.util.concurrent.TimeUnit
-
-
-
 
 fun getDateWith(date: Long, prefix: String): String {
 

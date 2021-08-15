@@ -3,12 +3,12 @@ package com.example.androidstack.util
 import android.content.SharedPreferences
 import com.example.androidstack.R
 
-
-val PREFFERENCES_SORT_ID = "sortId"
-val PREFFERENCES_SORT_NAME = "sortName"
-val PREFFERENCES_ORDER = "order"
-val PREFFERENCES_ORDER_NAME = "orderName"
-val PREFFERENCES_SEARCH_NAME = "query"
+const val PREFFERENCES_FILE = "uniquePreference"
+private val PREFFERENCES_SORT_ID = "sortId"
+private val PREFFERENCES_SORT_NAME = "sortName"
+private val PREFFERENCES_ORDER = "order"
+private val PREFFERENCES_ORDER_NAME = "orderName"
+private val PREFFERENCES_SEARCH_NAME = "query"
 
 fun SharedPreferences.saveSortPreference(ID: Int) {
     this.edit().putInt(PREFFERENCES_SORT_ID, ID).apply()
@@ -28,23 +28,19 @@ fun SharedPreferences.saveQueryPreference(query: String) {
 
 
 fun SharedPreferences.getQuery(): String {
-    val query = this.getString(PREFFERENCES_SEARCH_NAME, "android") ?: "android"
-    return query
+    return getString(PREFFERENCES_SEARCH_NAME, "android") ?: "android"
 }
 fun SharedPreferences.getSortName(): String {
-    val sort = this.getString(PREFFERENCES_SORT_NAME, "creation") ?: "creation"
-    return sort
+    return getString(PREFFERENCES_SORT_NAME, "creation") ?: "creation"
 }
 fun SharedPreferences.getOrderName(): String {
-    val order = this.getString(PREFFERENCES_ORDER_NAME, "desc") ?: "desc"
-    return order
+    return getString(PREFFERENCES_ORDER_NAME, "desc") ?: "desc"
 }
 
 
 fun SharedPreferences.getSortID(): Int {
-    val sortID = this.getInt(PREFFERENCES_SORT_ID, R.id.sort_activity)
-    return sortID
+    return getInt(PREFFERENCES_SORT_ID, R.id.sort_activity)
 }
 fun SharedPreferences.getOrder(): Boolean {
-    return this.getBoolean(PREFFERENCES_ORDER, false)
+    return getBoolean(PREFFERENCES_ORDER, false)
 }

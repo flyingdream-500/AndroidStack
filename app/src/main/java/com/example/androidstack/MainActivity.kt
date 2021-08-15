@@ -21,10 +21,13 @@ import com.example.androidstack.model.StackRequest
 import com.example.androidstack.ui.recyclerview.StackAdapter
 import com.example.androidstack.util.*
 import com.example.androidstack.viewmodel.StackViewModel
+import com.example.androidstack.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    val TAG = "TGA"
 
     //Preferences
     private lateinit var appPreferences: SharedPreferences
@@ -32,19 +35,18 @@ class MainActivity : AppCompatActivity() {
     //Popup sort menu
     private lateinit var popupMenu: PopupMenu
 
+    //ViewModel
     private lateinit var viewModel: StackViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModel = ViewModelProviders.of(this, Injection.provideViewModelFactory(this))
-            .get(StackViewModel::class.java)
+        initViewModel()
 
+        initPreferences()
 
         initAdapter()
-
-        appPreferences = getSharedPreferences(PREFFERENCES_FILE, MODE_PRIVATE)
 
         initSortMenu()
         loadPreferences()
@@ -55,11 +57,22 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun initViewModel() {
+        viewModel = ViewModelProviders.of(this, Injection.provideViewModelFactory(this))
+            .get(StackViewModel::class.java)
+    }
+
+    private fun initPreferences() {
+        appPreferences = getSharedPreferences(PREFFERENCES_FILE, MODE_PRIVATE)
+    }
+
+
     private fun loadPreferences() {
 
         val sortID = appPreferences.getSortID()
         val order = appPreferences.getOrder()
 
+        //doesn't work
         //popupMenu.menu.findItem(sortID).isChecked = true
         //popupMenu.menu.findItem(R.id.sort_desc).isChecked = order
 
@@ -81,12 +94,10 @@ class MainActivity : AppCompatActivity() {
         iv_main_sort.setOnClickListener {
             popupSortClickListener()
             popupMenu.show()
-
         }
     }
 
     private fun popupSortClickListener() {
-
         popupMenu.setOnMenuItemClickListener { item ->
             when(item.itemId) {
                 R.id.sort_activity ->  {
@@ -117,7 +128,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun saveSortItem(item: MenuItem, value: String) {
         item.isChecked = true
-        //updateRepoStackList(StackRequest(getCurrentQuery(), value, appPreferences.getOrderName()))
         appPreferences.saveSortPreference(item.itemId)
         appPreferences.saveSortNamePreference(value)
         updateRepoListFromInput()
@@ -125,7 +135,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun saveOrderItem(checked: Boolean, value: String) {
-        //updateRepoStackList(StackRequest(getCurrentQuery(), appPreferences.getSortName(), value))
         appPreferences.saveOrderPreference(checked)
         appPreferences.saveOrderNamePreference(value)
         updateRepoListFromInput()
@@ -139,7 +148,7 @@ class MainActivity : AppCompatActivity() {
     private fun updateRepoStackList(search: StackRequest) {
         if (viewModel.searchRepo(search)) {
             rv_questions.scrollToPosition(0)
-            Log.d("TTT", "scroll to 0")
+            Log.d(TAG, "scroll to 0")
             (rv_questions.adapter as? StackAdapter)?.submitList(null)
         }
     }
@@ -156,10 +165,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun initSwipeToRefresh() {
         viewModel.getRefreshState().observe(this) {
-            Log.d("NEWTAGG", it.status.name)
+            Log.d(TAG, it.status.name)
             swipe_refresh_layout.isRefreshing = it == NetworkState.LOADING
         }
-
 
         swipe_refresh_layout.setOnRefreshListener {
             viewModel.refresh()
@@ -172,13 +180,13 @@ class MainActivity : AppCompatActivity() {
             viewModel.retry()
         }
         rv_questions.adapter = adapter
-        viewModel.repos.observe(this, Observer<PagedList<Question>> {
-            Log.d("TAGG", "repos list: ${it?.size}")
+        viewModel.repos.observe(this,{
+            Log.d(TAG, "MA: repos list: ${it?.size}")
             showEmptyList(it?.size == 0)
             adapter.submitList(it)
         })
-        viewModel.networkStates.observe(this, Observer<NetworkState> {
-            Log.d("NEWTAGG", "${it.status.name} ${it?.msg}")
+        viewModel.networkStates.observe(this, {
+            Log.d(TAG, "${it.status.name} ${it?.msg}")
             adapter.setNetworkState(it)
         })
     }
@@ -221,7 +229,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    companion object {
-        private const val PREFFERENCES_FILE = "uniquePreference"
-    }
 }
