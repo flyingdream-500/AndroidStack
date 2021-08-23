@@ -18,7 +18,6 @@ class StackRepository(
     private val cache: StackCache
 ) {
 
-
     val refreshState = MutableLiveData<NetworkState>()
     var retryFunc: () -> Unit = {Log.d("TAGG", "Empty retry")}
 

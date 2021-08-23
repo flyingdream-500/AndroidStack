@@ -33,7 +33,7 @@ class StackBoundaryCallback(
     // avoid triggering multiple requests in the same time
     private var isRequestInProgress = false
 
-    var retryFunc: () -> Unit = {Log.d("TAGG", "retryFunc")}
+    var retryFunc: () -> Unit = {requestAndSaveData(request)}
 
 
     override fun onItemAtEndLoaded(itemAtEnd: Question) {
@@ -62,9 +62,6 @@ class StackBoundaryCallback(
             }
         }, { error ->
             Log.d("TAGG", "retry change")
-            retryFunc = {
-                requestAndSaveData(request)
-            }
             _networkErrors.postValue(NetworkState.error(error))
             isRequestInProgress = false
         })

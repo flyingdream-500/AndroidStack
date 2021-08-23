@@ -9,19 +9,14 @@ import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.PopupMenu
-import android.widget.Toast
 import androidx.appcompat.view.ContextThemeWrapper
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.paging.PagedList
 import com.example.androidstack.di.Injection
 import com.example.androidstack.model.NetworkState
-import com.example.androidstack.model.Question
 import com.example.androidstack.model.StackRequest
 import com.example.androidstack.ui.recyclerview.StackAdapter
 import com.example.androidstack.util.*
 import com.example.androidstack.viewmodel.StackViewModel
-import com.example.androidstack.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
@@ -63,7 +58,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initPreferences() {
-        appPreferences = getSharedPreferences(PREFFERENCES_FILE, MODE_PRIVATE)
+        appPreferences = getSharedPreferences(PREFERENCES_FILE, MODE_PRIVATE)
     }
 
 
@@ -101,23 +96,23 @@ class MainActivity : AppCompatActivity() {
         popupMenu.setOnMenuItemClickListener { item ->
             when(item.itemId) {
                 R.id.sort_activity ->  {
-                    saveSortItem(item, "activity")
+                    saveSortItem(item, SORT_ACTIVITY)
                     true
                 }
                 R.id.sort_creation ->  {
-                    saveSortItem(item, "creation")
+                    saveSortItem(item, SORT_CREATION)
                     true
                 }
                 R.id.sort_votes ->  {
-                    saveSortItem(item, "votes")
+                    saveSortItem(item, SORT_VOTES)
                     true
                 }
                 R.id.sort_desc ->  {
                     item.isChecked = !item.isChecked
                     if (item.isChecked) {
-                        saveOrderItem(true,"asc")
+                        saveOrderItem(true, ORDER_ASC)
                     } else {
-                        saveOrderItem(false,"desc")
+                        saveOrderItem(false, ORDER_DESC)
                     }
                     true
                 }
@@ -176,9 +171,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initAdapter() {
-        val adapter = StackAdapter {
-            viewModel.retry()
-        }
+        val adapter = StackAdapter(viewModel::retry)
+
         rv_questions.adapter = adapter
         viewModel.repos.observe(this,{
             Log.d(TAG, "MA: repos list: ${it?.size}")

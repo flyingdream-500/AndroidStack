@@ -2,18 +2,16 @@ package com.example.androidstack.ui.recyclerview
 
 import android.util.Log
 import android.view.ViewGroup
-import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.androidstack.R
 import com.example.androidstack.model.NetworkState
 import com.example.androidstack.model.Question
 import com.example.androidstack.ui.recyclerview.viewholders.NetworkStateViewHolder
 import com.example.androidstack.ui.recyclerview.viewholders.StackViewHolder
 import java.lang.IllegalArgumentException
 
-class StackAdapter(private val retryCallback: () -> Unit) : PagedListAdapter<Question, RecyclerView.ViewHolder>(REPO_COMPARATOR) {
+class StackAdapter(private val retryCallback: () -> Unit) : PagedListAdapter<Question, RecyclerView.ViewHolder>(STACK_DIFF) {
 
     private var networkState: NetworkState? = null
 
@@ -26,7 +24,6 @@ class StackAdapter(private val retryCallback: () -> Unit) : PagedListAdapter<Que
             DATA_VIEW_TYPE -> (holder as StackViewHolder).bind(getItem(position))
             FOOTER_VIEW_TYPE -> (holder as NetworkStateViewHolder).bind(networkState)
         }
-        Log.d("RECYCLERTAG", "super: ${super.getItemCount()} \t itemCount: $itemCount")
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -69,7 +66,7 @@ class StackAdapter(private val retryCallback: () -> Unit) : PagedListAdapter<Que
     }
 
     companion object {
-        private val REPO_COMPARATOR = object : DiffUtil.ItemCallback<Question>() {
+        private val STACK_DIFF = object : DiffUtil.ItemCallback<Question>() {
             override fun areItemsTheSame(oldItem: Question, newItem: Question): Boolean =
                 oldItem.id == newItem.id
 
