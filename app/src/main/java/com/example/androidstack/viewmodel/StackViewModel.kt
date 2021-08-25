@@ -31,7 +31,7 @@ class StackViewModel(private val repository: StackRepository): ViewModel() {
         return false
     }
 
-    fun getRefreshState(): MutableLiveData<NetworkState> {
+    fun getRefreshState(): LiveData<NetworkState> {
         return repository.refreshState
     }
 
@@ -40,7 +40,6 @@ class StackViewModel(private val repository: StackRepository): ViewModel() {
     }
 
     fun retry() {
-        Log.d("TAGG", "retry()")
         repository.retry()
     }
 }

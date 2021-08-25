@@ -36,7 +36,7 @@
         android:layout_marginTop="30dp"
         android:gravity="center"
         android:textColor="@color/black"
-        tools:text="Addsfsfsdfdfdf dsfsdfsd dsfsdfsd fsdfsd fsd fdsfsd dfgdfgdfg fdgdfgdf">
+        tools:text="@tools:sample/backgrounds/scenic">
 
     </TextView>
 

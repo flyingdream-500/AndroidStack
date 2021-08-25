@@ -7,34 +7,36 @@ import androidx.paging.LivePagedListBuilder
 import com.example.androidstack.api.StackService
 import com.example.androidstack.api.search
 import com.example.androidstack.db.StackCache
-import com.example.androidstack.db.StackDao
 import com.example.androidstack.model.NetworkState
 import com.example.androidstack.model.StackRequest
 import com.example.androidstack.model.StackResponse
-import io.reactivex.rxjava3.functions.Action
 
 class StackRepository(
     private val service: StackService,
     private val cache: StackCache
 ) {
 
-    val refreshState = MutableLiveData<NetworkState>()
-    var retryFunc: () -> Unit = {Log.d("TAGG", "Empty retry")}
+    private val _refreshState = MutableLiveData<NetworkState>()
+
+    val refreshState: LiveData<NetworkState>
+    get() = _refreshState
+
+
+    var retryFunc: () -> Unit = {}
 
     fun refresh(request: StackRequest) {
-        refreshState.postValue(NetworkState.LOADING)
-        search(service, request, 1, 20, { repos ->
+        _refreshState.postValue(NetworkState.LOADING)
+        search(service, request, 1, DATABASE_PAGE_SIZE, { repos ->
 
             cache.refresh(repos, request) {
-                refreshState.postValue(NetworkState.LOADED)
+                _refreshState.postValue(NetworkState.LOADED)
             }
         }, { error ->
-            refreshState.postValue(NetworkState.error(error))
+            _refreshState.postValue(NetworkState.error(error))
         })
     }
 
     fun loadQuestion(request: StackRequest): StackResponse {
-        Log.d("TAGG", "repository: loadQuestion")
         // Get data source factory from the local cache
         val dataSourceFactory = cache.stacksByName(request)
 

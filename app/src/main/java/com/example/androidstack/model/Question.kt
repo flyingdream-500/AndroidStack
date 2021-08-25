@@ -6,6 +6,9 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
+import com.example.androidstack.util.DEFAULT_SEARCH
+import com.example.androidstack.util.ORDER_ASC
+import com.example.androidstack.util.SORT_CREATION
 import com.google.gson.annotations.SerializedName
 import java.util.stream.Collectors
 
@@ -29,9 +32,9 @@ data class Question(val title: String,
                val creationDate: Long,
                @Embedded
                val owner: Owner) {
-    var query: String = "android"
-    var sort: String = "creation"
-    var order: String = "asc"
+    var query: String = DEFAULT_SEARCH
+    var sort: String = SORT_CREATION
+    var order: String = ORDER_ASC
 }
 
 class OwnerConverter {

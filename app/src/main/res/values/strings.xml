@@ -15,4 +15,8 @@
 
     <!--Network-->
     <string name="no_connection">No connection</string>
+
+    <!--Search-->
+    <string name="no_results">No results</string>
+
 </resources>

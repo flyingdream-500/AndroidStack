@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.example.androidstack.R
 import com.example.androidstack.model.Question
 import com.example.androidstack.util.*
-import kotlinx.android.synthetic.main.item_questions.view.*
+import kotlinx.android.synthetic.main.constraint_questions.view.*
 
 class StackViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
@@ -48,7 +48,7 @@ class StackViewHolder(view: View): RecyclerView.ViewHolder(view) {
     companion object {
         fun create(parent: ViewGroup): StackViewHolder {
             val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_questions, parent, false)
+                .inflate(R.layout.constraint_questions, parent, false)
             return StackViewHolder(view)
         }
     }

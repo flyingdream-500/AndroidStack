@@ -14,12 +14,11 @@ interface StackDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(posts: List<Question>)
 
+    @Query("SELECT * FROM dbcache WHERE `query` = :query AND `sort` = :sort AND `order` = :order ORDER BY score ASC" )
+    fun stackByVotesAsc(query: String, sort: String, order: String): DataSource.Factory<Int, Question>
 
     @Query("SELECT * FROM dbcache WHERE `query` = :query AND `sort` = :sort AND `order` = :order ORDER BY score DESC" )
     fun stackByVotesDesc(query: String, sort: String, order: String): DataSource.Factory<Int, Question>
-
-    @Query("SELECT * FROM dbcache WHERE `query` = :query AND `sort` = :sort AND `order` = :order ORDER BY score ASC" )
-    fun stackByVotesAsc(query: String, sort: String, order: String): DataSource.Factory<Int, Question>
 
     @Query("SELECT * FROM dbcache WHERE `query` = :query AND `sort` = :sort AND `order` = :order ORDER BY creationDate ASC" )
     fun stackByCreationAsc(query: String, sort: String, order: String): DataSource.Factory<Int, Question>

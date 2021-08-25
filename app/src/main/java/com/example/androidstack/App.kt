@@ -1,23 +1,27 @@
 package com.example.androidstack
 
 import android.app.Application
-import androidx.room.Room
-import com.example.androidstack.db.StackDatabase
+import android.content.Context
+import com.example.androidstack.di.ContextModule
+import com.example.androidstack.di.DaggerStackComponent
+import com.example.androidstack.di.StackComponent
 
 class App: Application() {
 
-    companion object {
-        private lateinit var db: StackDatabase
-
-        fun getDataBase(): StackDatabase {
-            return db
-        }
-    }
+    lateinit var stackComponent: StackComponent
 
     override fun onCreate() {
         super.onCreate()
-        db = Room.databaseBuilder(applicationContext, StackDatabase::class.java, "questions-db")
-            .allowMainThreadQueries()
+        stackComponent = DaggerStackComponent
+            .builder()
+            .contextModule(ContextModule(this))
             .build()
     }
 }
+
+val Context.stack: StackComponent
+get() = when(this) {
+    is App -> stackComponent
+    else -> this.applicationContext.stack
+}
+

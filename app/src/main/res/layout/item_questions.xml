@@ -17,7 +17,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
     <RelativeLayout
         android:id="@+id/rl_firstGroup"
         android:layout_width="wrap_content"
@@ -25,44 +24,48 @@
         android:layout_alignBottom="@+id/rl_fourthGroup"
         android:layout_alignTop="@+id/rl_secondGroup"
         >
+
         <TextView
             android:id="@+id/tv_vote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="5dp"
             android:background="@drawable/background_vote"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="5dp"
             android:textSize="18sp"
-            tools:text="10"/>
+            tools:text="10" />
 
         <ImageView
             android:id="@+id/iv_viewsLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_above="@+id/iv_answersLogo"
             android:layout_below="@+id/tv_vote"
+            android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:src="@drawable/ic_views"/>
+            android:src="@drawable/ic_views" />
 
         <TextView
             android:id="@+id/tv_viewsCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/iv_viewsLogo"
-            android:layout_margin="5dp"
-            android:layout_centerVertical="true"
             android:layout_above="@+id/iv_answersLogo"
             android:layout_below="@+id/tv_vote"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toEndOf="@+id/iv_viewsLogo"
             android:gravity="center"
             android:textColor="@color/light_grey"
             android:textSize="10sp"
-            tools:text="725k"/>
+            tools:text="725k" />
 
         <ImageView
             android:id="@+id/iv_answersLogo"
@@ -100,14 +103,14 @@
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toStartOf="@+id/rl_thirdGroup"
-            android:layout_marginTop="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:textSize="16sp"
+            android:layout_toStartOf="@+id/rl_thirdGroup"
             android:textColor="@color/black"
-            tools:text="@tools:sample/backgrounds/scenic"/>
+            android:textSize="16sp"
+            tools:text="@tools:sample/backgrounds/scenic" />
 
 
         <TextView
@@ -132,9 +135,9 @@
                     android:id="@+id/iv_favourite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
                     android:layout_marginTop="8dp"
-                    android:src="@drawable/ic_bookmark"/>
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/ic_bookmark" />
 
                 <ImageView
                     android:id="@+id/iv_questionState"

@@ -11,14 +11,17 @@ import android.view.inputmethod.EditorInfo
 import android.widget.PopupMenu
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.lifecycle.ViewModelProviders
-import com.example.androidstack.di.Injection
+
 import com.example.androidstack.model.NetworkState
 import com.example.androidstack.model.StackRequest
 import com.example.androidstack.ui.recyclerview.StackAdapter
 import com.example.androidstack.util.*
 import com.example.androidstack.viewmodel.StackViewModel
+import com.example.androidstack.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import kotlinx.android.synthetic.main.stacks_main.*
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,9 +36,14 @@ class MainActivity : AppCompatActivity() {
     //ViewModel
     private lateinit var viewModel: StackViewModel
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        stack.inject(this)
 
         initViewModel()
 
@@ -44,16 +52,18 @@ class MainActivity : AppCompatActivity() {
         initAdapter()
 
         initSortMenu()
+
         loadPreferences()
 
         initSwipeToRefresh()
 
         initSearch()
 
+
     }
 
     private fun initViewModel() {
-        viewModel = ViewModelProviders.of(this, Injection.provideViewModelFactory(this))
+        viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(StackViewModel::class.java)
     }
 
