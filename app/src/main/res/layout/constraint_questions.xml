@@ -149,23 +149,22 @@
             android:layout_height="wrap_content"
             app:layout_constraintWidth_default="wrap"
             style="@style/StackTextStyle"
-            android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
-            app:layout_constraintVertical_bias="1"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintVertical_bias="1"
             app:layout_constraintTop_toTopOf="@id/barrier"
             app:layout_constraintStart_toStartOf="@+id/tv_title"
-            app:layout_constraintBottom_toTopOf="@id/iv_questionLogo"
+            app:layout_constraintBottom_toBottomOf="@id/tv_createdDate"
             app:layout_constraintEnd_toStartOf="@id/tv_createdDate"
-            tools:text="1 day ago" />
+            tools:text="active 1 day ago" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_questionLogo"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginBottom="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="1"
             app:layout_constraintStart_toStartOf="@+id/tv_lastActiveDate"
+            app:layout_constraintBottom_toBottomOf="@id/iv_userLogo"
             app:shapeAppearanceOverlay="@style/Rounded"
             tools:src="@drawable/others" />
 
@@ -174,12 +173,13 @@
             android:id="@+id/iv_userLogo"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_below="@+id/tv_createdDate"
-            android:scaleType="centerCrop"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="5dp"
-            android:layout_marginEnd="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:scaleType="centerCrop"
+            app:layout_constraintVertical_bias="0"
             app:layout_constraintEnd_toStartOf="@id/tv_userName"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_createdDate"
             app:shapeAppearanceOverlay="@style/Circular"
             tools:src="@drawable/others" />
 
@@ -191,10 +191,10 @@
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
             style="@style/StackTextStyle"
+
             app:layout_constraintStart_toEndOf="@id/tv_lastActiveDate"
             app:layout_constraintVertical_bias="1"
             app:layout_constraintTop_toTopOf="@id/barrier"
-            app:layout_constraintBottom_toTopOf="@id/iv_userLogo"
             app:layout_constraintEnd_toEndOf="@id/iv_favourite"
             tools:text="created: 155 day ago" />
 
@@ -204,14 +204,13 @@
             android:layout_height="0dp"
             app:layout_constraintWidth_default="wrap"
             app:layout_constraintHeight_default="wrap"
-            app:layout_constrainedHeight="true"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="5dp"
             app:layout_constraintHorizontal_bias="1"
             app:layout_constraintEnd_toEndOf="@id/tv_createdDate"
             app:layout_constraintTop_toTopOf="@id/iv_userLogo"
+            app:layout_constraintBottom_toBottomOf="@id/iv_userLogo"
             app:layout_constraintStart_toStartOf="@id/tv_createdDate"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:textSize="12sp"
             android:textColor="@color/black"
             android:gravity="center"

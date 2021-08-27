@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProviders
 
 import com.example.androidstack.model.NetworkState
 import com.example.androidstack.model.StackRequest
+import com.example.androidstack.model.Status
 import com.example.androidstack.ui.recyclerview.StackAdapter
 import com.example.androidstack.util.*
 import com.example.androidstack.viewmodel.StackViewModel
@@ -192,13 +193,14 @@ class MainActivity : AppCompatActivity() {
 
         rv_questions.adapter = adapter
         viewModel.repos.observe(this,{
-            Log.d(TAG, "MA: repos list: ${it?.size}")
-            showEmptyList(it?.size == 0)
+            Log.d(TAG, "MA: repos list: ${it?.size} ${viewModel.networkStates.value}")
+            //showEmptyList(it?.size == 0)
             adapter.submitList(it)
         })
         viewModel.networkStates.observe(this, {
             Log.d(TAG, "${it.status.name} ${it?.msg}")
             adapter.setNetworkState(it)
+            showEmptyList(viewModel.repos.value?.size == 0 && it.status == Status.SUCCESS)
         })
     }
 
