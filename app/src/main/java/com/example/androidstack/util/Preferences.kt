@@ -1,6 +1,7 @@
 package com.example.androidstack.util
 
 import android.content.SharedPreferences
+import android.util.Log
 import com.example.androidstack.R
 
 const val PREFERENCES_FILE = "uniquePreference"
@@ -48,6 +49,7 @@ fun SharedPreferences.getOrderName(): String {
 
 
 fun SharedPreferences.getSortID(): Int {
+    Log.d("POPUP", "sort ${R.id.sort_activity}")
     return getInt(PREFERENCES_SORT_ID, R.id.sort_activity)
 }
 fun SharedPreferences.getOrder(): Boolean {

@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
     private fun initViewModel() {
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(StackViewModel::class.java)
@@ -77,9 +78,15 @@ class MainActivity : AppCompatActivity() {
         val sortID = appPreferences.getSortID()
         val order = appPreferences.getOrder()
 
+        Log.d("POPUP", "${popupMenu.menu.findItem(sortID)}")
+        Log.d("POPUP", "activity ${R.id.sort_activity}")
+        Log.d("POPUP", "creation ${R.id.sort_creation}")
+        Log.d("POPUP", "votes ${R.id.sort_votes}")
+        Log.d("POPUP", "${sortID}")
+
         //doesn't work
-        //popupMenu.menu.findItem(sortID).isChecked = true
-        //popupMenu.menu.findItem(R.id.sort_desc).isChecked = order
+        popupMenu.menu.findItem(sortID).isChecked = true
+        popupMenu.menu.findItem(R.id.sort_desc).isChecked = order
 
         val search = appPreferences.getQuery()
         val sort = appPreferences.getSortName()

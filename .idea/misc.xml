@@ -3,14 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Ildar/AndroidStudioProjects/AndroidStack/app/src/main/res/layout-v26/constraint_questions.xml" value="0.75" />
-        <entry key="..\:/Users/Ildar/AndroidStudioProjects/AndroidStack/app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="..\:/Users/Ildar/AndroidStudioProjects/AndroidStack/app/src/main/res/layout/app_bar_main.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Ildar/AndroidStudioProjects/AndroidStack/app/src/main/res/layout/constraint_questions.xml" value="0.33" />
-        <entry key="..\:/Users/Ildar/AndroidStudioProjects/AndroidStack/app/src/main/res/layout/item_list_footer.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Ildar/AndroidStudioProjects/AndroidStack/app/src/main/res/layout/item_questions.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Ildar/AndroidStudioProjects/AndroidStack/app/src/main/res/layout/no_connection_main.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Ildar/AndroidStudioProjects/AndroidStack/app/src/main/res/layout/stacks_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Ildar/AndroidStudioProjects/AndroidStack/app/src/main/res/drawable/background_vote.xml" value="0.2703125" />
+        <entry key="..\:/Users/Ildar/AndroidStudioProjects/AndroidStack/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Ildar/AndroidStudioProjects/AndroidStack/app/src/main/res/layout/constraint_questions.xml" value="0.4871382636655949" />
+        <entry key="..\:/Users/Ildar/AndroidStudioProjects/AndroidStack/app/src/main/res/menu/popup_sort.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>

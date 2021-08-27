@@ -27,7 +27,6 @@
             android:id="@+id/tv_vote"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="3dp"
             android:layout_marginTop="3dp"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
@@ -59,10 +58,7 @@
             android:id="@+id/tv_viewsCount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginEnd="5dp"
-            android:textColor="@color/light_grey"
-            android:textSize="10sp"
+            style="@style/StackTextStyle"
             app:layout_constraintBottom_toBottomOf="@id/iv_viewsLogo"
             app:layout_constraintEnd_toStartOf="@id/first_guide"
             app:layout_constraintHorizontal_bias=".5"
@@ -89,10 +85,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/iv_answersLogo"
-            android:layout_marginEnd="5dp"
-            android:gravity="center"
-            android:textColor="@color/light_grey"
-            android:textSize="10sp"
+            style="@style/StackTextStyle"
             app:layout_constraintBottom_toBottomOf="@+id/iv_answersLogo"
             app:layout_constraintEnd_toStartOf="@id/first_guide"
             app:layout_constraintStart_toEndOf="@id/iv_answersLogo"
@@ -112,8 +105,8 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_bookmark"
             android:layout_marginTop="5dp"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/second_guide"
             app:layout_constraintTop_toTopOf="parent"
             />
@@ -136,6 +129,7 @@
             android:layout_marginEnd="5dp"
             android:textColor="@color/black"
             android:textSize="16sp"
+            app:layout_constraintVertical_bias="0"
             app:layout_constraintBottom_toTopOf="@id/barrier"
             app:layout_constraintEnd_toStartOf="@id/second_guide"
             app:layout_constraintStart_toEndOf="@id/first_guide"
@@ -149,18 +143,21 @@
             app:barrierDirection="bottom"
             app:constraint_referenced_ids="iv_questionState, tv_title"/>
 
-
         <TextView
             android:id="@+id/tv_lastActiveDate"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textColor="@color/light_grey"
-            android:textSize="10sp"
-            app:layout_constraintVertical_bias=".7"
+            app:layout_constraintWidth_default="wrap"
+            style="@style/StackTextStyle"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintVertical_bias="1"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintTop_toTopOf="@id/barrier"
             app:layout_constraintStart_toStartOf="@+id/tv_title"
             app:layout_constraintBottom_toTopOf="@id/iv_questionLogo"
-            tools:text="active: 1 day ago" />
+            app:layout_constraintEnd_toStartOf="@id/tv_createdDate"
+            tools:text="1 day ago" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_questionLogo"
@@ -188,33 +185,37 @@
 
         <TextView
             android:id="@+id/tv_createdDate"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:textColor="@color/light_grey"
-            android:textSize="10sp"
-            app:layout_constraintVertical_bias=".8"
+            app:layout_constraintWidth_default="wrap"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            style="@style/StackTextStyle"
+            app:layout_constraintStart_toEndOf="@id/tv_lastActiveDate"
+            app:layout_constraintVertical_bias="1"
             app:layout_constraintTop_toTopOf="@id/barrier"
             app:layout_constraintBottom_toTopOf="@id/iv_userLogo"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/iv_favourite"
             tools:text="created: 155 day ago" />
 
         <TextView
             android:id="@+id/tv_userName"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             app:layout_constraintWidth_default="wrap"
+            app:layout_constraintHeight_default="wrap"
+            app:layout_constrainedHeight="true"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="5dp"
             app:layout_constraintHorizontal_bias="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/iv_userLogo"
+            app:layout_constraintEnd_toEndOf="@id/tv_createdDate"
             app:layout_constraintTop_toTopOf="@id/iv_userLogo"
             app:layout_constraintStart_toStartOf="@id/tv_createdDate"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:textSize="12sp"
             android:textColor="@color/black"
             android:gravity="center"
-            tools:text="Mohat"/>
+            tools:text="@tools:sample/backgrounds/scenic"/>
 
 
 
