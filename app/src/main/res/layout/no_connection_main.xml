@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.appcompat.widget.LinearLayoutCompat
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
     android:fitsSystemWindows="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -16,11 +15,10 @@
         android:gravity="center"
         android:padding="5dp"
         android:text="@string/no_connection"
-        android:textColor="@color/white"
-        android:visibility="visible">
-    </TextView>
+        android:textColor="@color/white">
+    </androidx.appcompat.widget.AppCompatTextView>
 
-</RelativeLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>
 
 
 

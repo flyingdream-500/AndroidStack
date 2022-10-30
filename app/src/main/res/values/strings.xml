@@ -18,5 +18,6 @@
 
     <!--Search-->
     <string name="no_results">No results</string>
+    <string name="search_title">Search</string>
 
 </resources>

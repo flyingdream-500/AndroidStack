@@ -214,7 +214,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateRepoListFromInput() {
-        et_search.text.trim().let {
+        et_search.text?.trim()?.let {
             if (it.isNotEmpty()) {
                 updateRepoStackList(StackRequest(it.toString(),appPreferences.getSortName(), appPreferences.getOrderName()))
             }

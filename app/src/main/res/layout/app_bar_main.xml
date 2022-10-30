@@ -8,51 +8,62 @@
     android:fitsSystemWindows="true"
     app:elevation="0dp">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_scrollFlags="scroll|enterAlways|snap">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_main_title"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_margin="16dp"
-            android:fitsSystemWindows="true"
-            android:text="Поиск"
-            android:textColor="@color/white"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/et_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_main_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fitsSystemWindows="true"
+            android:text="@string/search_title"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:fontFamily="@font/sans_bold"
+            />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/tv_main_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_main_title"
+            app:layout_constraintEnd_toStartOf="@id/iv_main_sort"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
-            android:layout_toStartOf="@+id/iv_main_sort"
-            android:background="@drawable/background_search"
-            android:drawableStart="@drawable/background_search_ic"
+            android:background="@drawable/background_oval"
+            android:drawableStart="@drawable/search_focusable"
             android:drawablePadding="5dp"
             android:imeOptions="actionSearch"
             android:inputType="text|textCapSentences"
             android:padding="10dp"
+            android:scrollHorizontally="true"
+            android:fontFamily="@font/sans_regular"
             android:textColor="@color/black"
+            android:textColorHighlight="@color/orange"
             android:textCursorDrawable="@drawable/background_cursor" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_main_sort"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:layout_below="@+id/tv_main_title"
+            app:layout_constraintTop_toTopOf="@id/et_search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="32dp"
             android:layout_marginEnd="16dp"
-            android:src="@drawable/background_sort" />
+            android:background="@drawable/background_oval"
+            android:src="@drawable/ic_sort"
+            android:padding="10dp"/>
 
-
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.appbar.AppBarLayout>
