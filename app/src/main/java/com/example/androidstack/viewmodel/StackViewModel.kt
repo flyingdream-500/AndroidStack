@@ -1,6 +1,5 @@
 package com.example.androidstack.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
@@ -11,8 +10,9 @@ import com.example.androidstack.model.Question
 import com.example.androidstack.model.StackRequest
 import com.example.androidstack.model.StackResponse
 import com.example.androidstack.repository.StackRepository
+import javax.inject.Inject
 
-class StackViewModel(private val repository: StackRepository): ViewModel() {
+class StackViewModel @Inject constructor(private val repository: StackRepository): ViewModel() {
 
     private val queryLiveData = MutableLiveData<StackRequest>()
     private val repoResult: LiveData<StackResponse> = Transformations.map(queryLiveData) {

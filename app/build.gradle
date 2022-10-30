@@ -6,13 +6,13 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 33
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.example.androidstack"
         minSdkVersion 22
-        targetSdkVersion 30
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
@@ -35,49 +35,73 @@ android {
 }
 
 dependencies {
+    ext {
+        lifecycle_version = "2.5.1"
+        rx_version = "3.0.0"
+        dagger_version = "2.37"
+        room_version = "2.4.3"
+        glide_version = "4.12.0"
+        retrofit_version = "2.9.0"
+        activity_ktx_version = "1.6.1"
+        core_version = "1.9.0"
+        appcompat_version = "1.4.1"
+        material_version = "1.6.0"
+        constraint_layout_version = "2.1.4"
+        swipe_refresh_layout_version = "1.1.0"
+        gson_version = "2.8.9"
+        reactivestreams_version = "1.1.1"
+        logging_interceptor_version = "4.9.0"
+        paging_version = "3.0.0"
+    }
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.6.0'
-    implementation 'androidx.appcompat:appcompat:1.3.0'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation "androidx.core:core-ktx:$core_version"
+    //noinspection GradleDependency
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    //noinspection GradleDependency
+    implementation "com.google.android.material:material:$material_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
+
+    //Ktx
+    implementation "androidx.activity:activity-ktx:$activity_ktx_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
 
     //Swipe for refresh layout
-    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
-
-    //Convert Rx to LiveData
-    implementation "android.arch.lifecycle:reactivestreams:1.1.1"
-
-    //HTTP Logging
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
-
-    //GSON
-    implementation 'com.google.code.gson:gson:2.8.6'
-
-    //Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
-
-    //Glide
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
-
-    // Room
-    implementation "androidx.room:room-runtime:2.3.0"
-    kapt  "androidx.room:room-compiler:2.3.0"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$swipe_refresh_layout_version"
 
     //Paging
-    implementation 'androidx.paging:paging-runtime-ktx:3.0.0'
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+
+    //Convert Rx to LiveData
+    implementation "android.arch.lifecycle:reactivestreams:$reactivestreams_version"
+
+    //HTTP Logging
+    implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor_version"
+
+    //GSON
+    implementation "com.google.code.gson:gson:$gson_version"
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava3:$retrofit_version"
+
+    //Glide
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+
+
+    // Room
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 
     //Rx
-    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
-    implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
+    implementation "io.reactivex.rxjava3:rxandroid:$rx_version"
+    implementation "io.reactivex.rxjava3:rxjava:$rx_version"
 
-    //Dagger
-    implementation 'com.google.dagger:dagger:2.36'
-    kapt 'com.google.dagger:dagger-compiler:2.36'
+    //Dagger 2
+    implementation "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
     //test
     testImplementation 'junit:junit:4.+'

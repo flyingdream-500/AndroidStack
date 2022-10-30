@@ -1,4 +1,4 @@
-package com.example.androidstack
+package com.example.androidstack.ui.common
 
 import android.app.Application
 import android.content.Context
@@ -12,6 +12,10 @@ class App: Application() {
 
     override fun onCreate() {
         super.onCreate()
+        initDagger()
+    }
+
+    private fun initDagger() {
         stackComponent = DaggerStackComponent
             .builder()
             .contextModule(ContextModule(this))
@@ -19,6 +23,9 @@ class App: Application() {
     }
 }
 
+/**
+ * Расширение [Context] для получения [StackComponent]
+ */
 val Context.stack: StackComponent
 get() = when(this) {
     is App -> stackComponent

@@ -10,15 +10,16 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.PopupMenu
 import androidx.appcompat.view.ContextThemeWrapper
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 
 import com.example.androidstack.model.NetworkState
 import com.example.androidstack.model.StackRequest
 import com.example.androidstack.model.Status
+import com.example.androidstack.ui.common.stack
 import com.example.androidstack.ui.recyclerview.StackAdapter
 import com.example.androidstack.util.*
+import com.example.androidstack.viewmodel.StackViewModelFactory
 import com.example.androidstack.viewmodel.StackViewModel
-import com.example.androidstack.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.stacks_main.*
@@ -29,26 +30,26 @@ class MainActivity : AppCompatActivity() {
     val TAG = "TGA"
 
     //Preferences
-    private lateinit var appPreferences: SharedPreferences
+    private val appPreferences: SharedPreferences by lazy {
+        getSharedPreferences(PREFERENCES_FILE, MODE_PRIVATE)
+    }
 
     //Popup sort menu
     private lateinit var popupMenu: PopupMenu
 
-    //ViewModel
-    private lateinit var viewModel: StackViewModel
-
     @Inject
-    lateinit var viewModelFactory: ViewModelFactory
+    lateinit var stackViewModelFactory: StackViewModelFactory
+
+    //ViewModel
+    private val viewModel: StackViewModel by lazy {
+        ViewModelProvider(this, stackViewModelFactory).get(StackViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         stack.inject(this)
-
-        initViewModel()
-
-        initPreferences()
 
         initAdapter()
 
@@ -60,19 +61,7 @@ class MainActivity : AppCompatActivity() {
 
         initSearch()
 
-
     }
-
-
-    private fun initViewModel() {
-        viewModel = ViewModelProviders.of(this, viewModelFactory)
-            .get(StackViewModel::class.java)
-    }
-
-    private fun initPreferences() {
-        appPreferences = getSharedPreferences(PREFERENCES_FILE, MODE_PRIVATE)
-    }
-
 
     private fun loadPreferences() {
 

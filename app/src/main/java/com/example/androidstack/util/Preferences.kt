@@ -4,6 +4,10 @@ import android.content.SharedPreferences
 import android.util.Log
 import com.example.androidstack.R
 
+object Prefs {
+
+}
+
 const val PREFERENCES_FILE = "uniquePreference"
 
 const val DEFAULT_SEARCH = "android"

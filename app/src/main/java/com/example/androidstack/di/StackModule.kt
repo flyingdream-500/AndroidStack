@@ -1,17 +1,13 @@
 package com.example.androidstack.di
 
 import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.room.Room
 import com.example.androidstack.api.StackService
 import com.example.androidstack.db.StackCache
 import com.example.androidstack.db.StackDao
 import com.example.androidstack.db.StackDatabase
 import com.example.androidstack.repository.StackRepository
-import com.example.androidstack.viewmodel.StackViewModel
-import com.example.androidstack.viewmodel.ViewModelFactory
+import com.example.androidstack.viewmodel.StackViewModelFactory
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -67,8 +63,8 @@ class ContentModule {
     }
 
     @Provides
-    fun provideViewModelFactory(stackRepository: StackRepository): ViewModelFactory {
-        return ViewModelFactory(stackRepository)
+    fun provideStackViewModelFactory(stackRepository: StackRepository): StackViewModelFactory {
+        return StackViewModelFactory(stackRepository)
     }
 
 }
